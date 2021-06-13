@@ -35,3 +35,19 @@ function setTheme(mode) {
 
 	localStorage.setItem('theme', mode)
 }
+
+document.querySelector("form").addEventListener("submit", handleSubmit)
+
+function handleSubmit(event) {
+	const url = "https://formspree.io/f/xjvjrwwa";
+	const data = new FormData(event.target);
+	fetch(event.target.action, {
+		method: "post",
+		body: data,
+		headers: {
+			'Accept': 'application/json'
+		}
+	}).then((res) => res.json())
+		.then(data => console.log(data))
+		.catch(err => alert(err));
+}
